@@ -20,7 +20,7 @@ easily from Python processes.
 
 The following options are allowed:
 
--`client`: is a [redis-py](https://github.com/andymccurdy/redis-py) compatible client
+- `client`: is a [redis-py](https://github.com/andymccurdy/redis-py) compatible client
    This argument is optional.
 - `key`: the name of the key to pub/sub events on as prefix (`socket.io`)
 - `host`: host to connect to redis on (`localhost`)
