@@ -32,13 +32,13 @@ class TestEmitter(TestCase):
 
         output = ""
         while True:
-            out = redis_cli.stdout.read(1)
-            if out == '' and redis_cli.poll() != None:
+            chunk = redis_cli.stdout.read(1)
+            if chunk == '' and redis_cli.poll() != None:
                 break
-            if out == '\n':
+            if chunk == '\n':
                 io.Emit('broadcast event', 'Hello from socket.io-emitter')
-            if out != '' and 'PUBLISH' not in output:
-                output += out
+            if chunk != '' and 'PUBLISH' not in output:
+                output += chunk
             else:
                 redis_cli.kill()
                 break
