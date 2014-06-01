@@ -9,7 +9,7 @@ class AppWorker:
         self.interval = 6000 * 1
 
     def start(self):
-        io = Emitter({'host': 'localhost', 'port': 6379})
+        io = Emitter(dict(host='localhost',port=6379))
         io.Emit('broadcast event', 'Hello from socket.io-emitter')
         threading.Timer(self.interval, self.start).start()
 
