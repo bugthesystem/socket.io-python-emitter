@@ -35,7 +35,6 @@ class Emitter:
 
     #Send the packet.
     def Emit(self, *args):
-        arguments = locals().keys()
         packet = {}
         extras={}
 
