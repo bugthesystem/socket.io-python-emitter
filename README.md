@@ -19,7 +19,7 @@ easily from Python processes.
 ### Emitter(opts)
 
 The following options are allowed:
-- `redis`: is a [redis-py](https://github.com/andymccurdy/redis-py) compatible client
+- `client`: is a [redis-py](https://github.com/andymccurdy/redis-py) compatible client
 - `key`: the name of the key to pub/sub events on as prefix (`socket.io`)
 - `host`: host to connect to redis on (`localhost`)
 - `port`: port to connect to redis on (`6379`)
