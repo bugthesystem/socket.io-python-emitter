@@ -12,7 +12,11 @@ class Emitter:
         self.opts = opts
         self._rooms = []
         self._flags = {}
-        self.redis = self._client(self.opts['host'], self.opts['port'])
+        
+        if 'redis' in self.opts and self.opts['redis'] is not None:
+            self.redis=self.opts['redis']
+        else:
+            self.redis = self._client(self.opts['host'], self.opts['port']) 
 
         if not 'key' in self.opts:
             self.key = 'socket.io#emitter'
