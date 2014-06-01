@@ -9,21 +9,21 @@ class Emitter:
     BINARY_EVENT = 5
 
     def __init__(self, opts):
-        self.opts = opts
+        self._opts = opts
         self._rooms = []
         self._flags = {}
-        
-        if 'redis' in self.opts and self.opts['redis'] is not None:
-            self.redis=self.opts['redis']
-        else:
-            self.redis = self._client(self.opts['host'], self.opts['port']) 
 
-        if not 'key' in self.opts:
+        if 'client' in self._opts and self._opts['client'] is not None:
+            self._client = self._opts['client']
+        else:
+            self._client = self._createClient()
+
+        if not 'key' in self._opts:
             self.key = 'socket.io#emitter'
         else:
             self.key = self.options.key + '#emitter'
 
-    #Limit emission to a certain `room`.
+    # Limit emission to a certain `room`.
     def In(self, room):
         if not room in self.rooms:
             self._rooms.extend(room)
@@ -40,7 +40,7 @@ class Emitter:
     #Send the packet.
     def Emit(self, *args):
         packet = {}
-        extras={}
+        extras = {}
 
         packet['data'] = args
         packet['type'] = self.BINARY_EVENT if self._hasBin(args) else self.EVENT
@@ -51,25 +51,24 @@ class Emitter:
             packet['nsp'] = self._flags.nsp
             del self._flags['nsp']
 
-        extras['flags']=self._flags if len(self._flags) > 0 else ''
-        extras['rooms']=self._rooms if len(self._rooms) > 0 else ''
+        extras['flags'] = self._flags if len(self._flags) > 0 else ''
+        extras['rooms'] = self._rooms if len(self._rooms) > 0 else ''
 
-
-        self.redis.publish(self.key, msgpack.packb([packet, extras]))
+        self._client.publish(self.key, msgpack.packb([packet, extras]))
 
         self._flags = {}
         self._rooms = []
 
 
     #Not implemented yet
-    def _hasBin(self,param):
+    def _hasBin(self, param):
         return False
 
     #Create a redis client from a `host:port` uri string.
-    def _client(self, host, port):
-        if host is None:
+    def _createClient(self):
+        if not 'host' in self._opts:
             raise Exception('Missing redis `host`')
-        if port is None:
+        if not 'port' in self._opts:
             raise Exception('Missing redis `port`')
 
-        return redis.StrictRedis(host=host, port=port)
+        return redis.StrictRedis(host=self._opts['host'],port=self._opts['port'])

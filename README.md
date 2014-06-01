@@ -19,13 +19,13 @@ easily from Python processes.
 ### Emitter(opts)
 
 The following options are allowed:
-
+- `redis`: is a [redis-py](https://github.com/andymccurdy/redis-py) compatible client
 - `key`: the name of the key to pub/sub events on as prefix (`socket.io`)
 - `host`: host to connect to redis on (`localhost`)
 - `port`: port to connect to redis on (`6379`)
 
 If you don't want to supply a redis client object, and want
-`socket.io-python-emitter` to intiialize one for you, make sure to supply the
+`socket.io-python-emitter` to initialize one for you, make sure to supply the
 `host` and `port` options.
 
 Specifies a specific `room` that you want to emit to.
