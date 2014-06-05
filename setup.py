@@ -12,6 +12,6 @@ setup(
     url='https://github.com/ziyasal/socket.io-python-emitter',
     license='LICENSE',
     description='A Python implementation of socket.io-emitter',
-    long_description=open('README').read(),
+    long_description=open('README.md').read(),
     install_requires=['msgpack-python', 'redis']
 )
