@@ -1,4 +1,5 @@
 __author__ = 'ziyasal'
+__version__ = '0.1.0'
 
 import redis
 import msgpack
@@ -28,7 +29,7 @@ class Emitter:
         if not room in self.rooms:
             self._rooms.extend(room)
 
-    #Limit emission to a certain `room`.
+    # Limit emission to a certain `room`.
     def To(self, room):
         return self.In(room)
 
@@ -71,4 +72,4 @@ class Emitter:
         if not 'port' in self._opts:
             raise Exception('Missing redis `port`')
 
-        return redis.StrictRedis(host=self._opts['host'],port=self._opts['port'])
+        return redis.StrictRedis(host=self._opts['host'], port=self._opts['port'])

@@ -5,7 +5,7 @@ import subprocess
 
 import redis
 
-from emitter.emitter import Emitter
+from emitter import Emitter
 
 
 class TestEmitter(TestCase):

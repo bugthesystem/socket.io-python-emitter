@@ -8,10 +8,9 @@ setup(
     author='Ziya SARIKAYA',
     author_email='sarikayaziya@gmail.com',
     packages=['emitter'],
-    scripts=['emitter/emitter.py'],
     url='https://github.com/ziyasal/socket.io-python-emitter',
     license='LICENSE',
     description='A Python implementation of socket.io-emitter',
-    long_description=open('README.md').read(),
-    install_requires=['msgpack-python', 'redis']
+    install_requires=['msgpack-python', 'redis'],
+    include_package_data=True
 )

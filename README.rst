@@ -8,6 +8,12 @@ easily from Python processes.
 
 ## How to use
 
+**Install via pip**
+
+```py
+pip install socket.io-emitter
+```
+
 ```py
   io=Emitter({'host': 'localhost', 'port':6379})
   io.Emit('broadcast event','Hello from socket.io-python-emitter')
