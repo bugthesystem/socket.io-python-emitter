@@ -1,6 +1,6 @@
 import threading
 
-from emitter. import Emitter
+from emitter import Emitter
 
 
 __author__ = 'ziyasal'
