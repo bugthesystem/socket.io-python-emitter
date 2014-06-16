@@ -1,6 +1,6 @@
 import threading
 
-from emitter. import Emitter
+from emitter import Emitter
 
 
 __author__ = 'ziyasal'
@@ -11,7 +11,7 @@ class AppWorker:
         self.interval = 6000 * 1
 
     def start(self):
-        io = Emitter(dict(host='localhost',port=6379))
+        io = Emitter(dict(host='localhost',port=6379,key='sio-key'))
         io.Emit('broadcast event', 'Hello from socket.io-emitter')
         threading.Timer(self.interval, self.start).start()
 

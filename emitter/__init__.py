@@ -1,5 +1,5 @@
 __author__ = 'ziyasal'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 import redis
 import msgpack
@@ -20,9 +20,9 @@ class Emitter:
             self._client = self._createClient()
 
         if not 'key' in self._opts:
-            self.key = 'socket.io#emitter'
+            self._key = 'socket.io#emitter'
         else:
-            self.key = self.options.key + '#emitter'
+            self._key = self._opts['key'] + '#emitter'
 
     # Limit emission to a certain `room`.
     def In(self, room):
@@ -55,7 +55,7 @@ class Emitter:
         extras['flags'] = self._flags if len(self._flags) > 0 else ''
         extras['rooms'] = self._rooms if len(self._rooms) > 0 else ''
 
-        self._client.publish(self.key, msgpack.packb([packet, extras]))
+        self._client.publish(self._key, msgpack.packb([packet, extras]))
 
         self._flags = {}
         self._rooms = []
