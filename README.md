@@ -3,8 +3,7 @@ socket.io-python-emitter
 
 A Python implementation of socket.io-emitter
 
-`socket.io-python-emitter` allows you to communicate with socket.io servers
-easily from Python processes.
+[socket.io](http://socket.io/) provides a hook point to easily allow you to emit events to browsers from anywhere so `socket.io-python-emitter` communicates with [socket.io](http://socket.io/) servers through redis.
 
 ## How to use
 
