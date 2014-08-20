@@ -51,7 +51,7 @@ class Emitter:
 
         # set namespace to packet
         if 'nsp' in self._flags:
-            packet['nsp'] = self._flags.nsp
+            packet['nsp'] = self._flags['nsp']
             del self._flags['nsp']
 
         extras['flags'] = self._flags if len(self._flags) > 0 else ''
