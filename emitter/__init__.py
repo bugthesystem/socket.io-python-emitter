@@ -27,7 +27,7 @@ class Emitter:
     # Limit emission to a certain `room`.
     def In(self, room):
         if not room in self._rooms:
-            self._rooms.extend(room)
+            self._rooms.append(room)
             
         return self
 
