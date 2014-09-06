@@ -1,5 +1,5 @@
 __author__ = 'ziyasal'
-__version__ = '0.1.1'
+__version__ = '0.1.3'
 
 import redis
 import msgpack
@@ -28,14 +28,14 @@ class Emitter:
     def In(self, room):
         if not room in self._rooms:
             self._rooms.append(room)
-            
+
         return self
 
     # Limit emission to a certain `room`.
     def To(self, room):
         return self.In(room)
 
-    #Limit emission to certain `namespace`.
+    # Limit emission to certain `namespace`.
     def Of(self, nsp):
         self._flags['nsp'] = nsp
         return self
