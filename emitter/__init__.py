@@ -53,6 +53,8 @@ class Emitter:
         if 'nsp' in self._flags:
             packet['nsp'] = self._flags['nsp']
             del self._flags['nsp']
+        else:
+            packet['nsp'] = '/'
 
         extras['flags'] = self._flags if len(self._flags) > 0 else ''
         extras['rooms'] = self._rooms if len(self._rooms) > 0 else ''
