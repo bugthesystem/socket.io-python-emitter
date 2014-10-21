@@ -26,9 +26,8 @@ class Emitter:
 
     # Limit emission to a certain `room`.
     def In(self, room):
-        if not room in self._rooms:
+        if not room in self.rooms:
             self._rooms.append(room)
-
         return self
 
     # Limit emission to a certain `room`.
@@ -40,7 +39,7 @@ class Emitter:
         self._flags['nsp'] = nsp
         return self
 
-    #Send the packet.
+    # Send the packet.
     def Emit(self, *args):
         packet = {}
         extras = {}
@@ -64,16 +63,23 @@ class Emitter:
         self._flags = {}
         self._rooms = []
 
-
-    #Not implemented yet
+    # Not implemented yet
     def _hasBin(self, param):
         return False
 
-    #Create a redis client from a `host:port` uri string.
+    # Create a redis client from a `host:port` uri string.
     def _createClient(self):
         if not 'host' in self._opts:
             raise Exception('Missing redis `host`')
         if not 'port' in self._opts:
             raise Exception('Missing redis `port`')
 
-        return redis.StrictRedis(host=self._opts['host'], port=self._opts['port'])
+        kwargs = {
+            'host': self._opts['host'],
+            'port': self._opts['port'],
+        }
+
+        if 'password' in self._opts:
+            kwargs['password'] = self._opts['password']
+
+        return redis.StrictRedis(**kwargs)
