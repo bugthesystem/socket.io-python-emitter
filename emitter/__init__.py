@@ -28,7 +28,6 @@ class Emitter:
     def In(self, room):
         if not room in self.rooms:
             self._rooms.extend(room)
-            
         return self
 
     # Limit emission to a certain `room`.
@@ -74,4 +73,12 @@ class Emitter:
         if not 'port' in self._opts:
             raise Exception('Missing redis `port`')
 
-        return redis.StrictRedis(host=self._opts['host'], port=self._opts['port'])
+        kwargs = {
+            'host': self._opts['host'],
+            'port': self._opts['port'],
+        }
+
+        if 'password' in self._opts:
+            kwargs['password'] = self._opts['password']
+
+        return redis.StrictRedis(**kwargs)
