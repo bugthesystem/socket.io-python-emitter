@@ -51,6 +51,15 @@ Specifies a specific `room` that you want to emit to.
  io.To("room-name").Emit("news","Hello from python emitter");
 ```
 
+We are flattening the room parameter from [] and *argv, so you can also send to several rooms like this (both examples are valid):
+
+```py
+ io=Emitter({'host': 'localhost', 'port':6379})
+
+ io.To(["room1", "room2"]).Emit("news","Hello from python emitter");
+ io.To("room1", "room2").Emit("news","Hello from python emitter");
+```
+
 ### Emitter#Of(namespace):Emitter
 Specifies a specific namespace that you want to emit to.
 ```py

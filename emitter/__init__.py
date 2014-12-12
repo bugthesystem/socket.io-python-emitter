@@ -25,13 +25,12 @@ class Emitter:
             self._key = self._opts['key'] + '#emitter'
 
     # Limit emission to a certain `room`.
-    def In(self, room):
-        if not room in self.rooms:
-            self._rooms.append(room)
+    def In(self, *room):
+        self._rooms.append(room)
         return self
 
     # Limit emission to a certain `room`.
-    def To(self, room):
+    def To(self, *room):
         return self.In(room)
 
     # Limit emission to certain `namespace`.
@@ -56,12 +55,27 @@ class Emitter:
             packet['nsp'] = '/'
 
         extras['flags'] = self._flags if len(self._flags) > 0 else ''
-        extras['rooms'] = self._rooms if len(self._rooms) > 0 else ''
+
+        rooms = self._getRooms()
+        extras['rooms'] = rooms if len(rooms) > 0 else ''
 
         self._client.publish(self._key, msgpack.packb([packet, extras]))
 
         self._flags = {}
         self._rooms = []
+
+    # Makes [[1,2],3,[4,[5,6]]] into an iterator of [1,2,3,4,5,6]
+    def _flatten(self, root):
+      if isinstance(root, (list, tuple)):
+        for element in root:
+          for e in self._flatten(element):
+            yield e
+      else:
+        yield root
+
+    # Get a list of unique rooms
+    def _getRooms(self):
+      return list(set(self._flatten(self._rooms)))
 
     # Not implemented yet
     def _hasBin(self, param):
