@@ -1,7 +1,7 @@
 socket.io-python-emitter
 ========================
 
-A Python implementation of socket.io-emitter
+A Python implementation of [socket.io-emitter](https://github.com/automattic/socket.io-emitter)
 
 [socket.io](http://socket.io/) provides a hook point to easily allow you to emit events to browsers from anywhere so `socket.io-python-emitter` communicates with [socket.io](http://socket.io/) servers through redis.
 
