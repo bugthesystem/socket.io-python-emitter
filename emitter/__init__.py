@@ -1,5 +1,3 @@
-import random
-
 __author__ = 'ziyasal'
 __version__ = '0.1.3'
 
@@ -16,7 +14,7 @@ class Emitter:
         self._rooms = []
         self._flags = {}
 
-        self.uid = "".join(random.sample("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",6))
+        self.uid = "emitter"
 
         if 'client' in self._opts and self._opts['client'] is not None:
             self._client = self._opts['client']
