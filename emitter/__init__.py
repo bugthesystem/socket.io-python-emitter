@@ -14,15 +14,14 @@ class Emitter:
         self._rooms = []
         self._flags = {}
 
+        self.uid = "emitter"
+
         if 'client' in self._opts and self._opts['client'] is not None:
             self._client = self._opts['client']
         else:
             self._client = self._createClient()
 
-        if not 'key' in self._opts:
-            self._key = 'socket.io#emitter'
-        else:
-            self._key = self._opts['key'] + '#emitter'
+        self._key = self._opts.get("key", 'socket.io')
 
     # Limit emission to a certain `room`.
     def In(self, *room):
@@ -59,7 +58,14 @@ class Emitter:
         rooms = self._getRooms()
         extras['rooms'] = rooms if len(rooms) > 0 else ''
 
-        self._client.publish(self._key, msgpack.packb([packet, extras]))
+        self._client.publish(self._key + "#emitter", msgpack.packb([packet, extras]))
+        if extras['rooms']:
+            for room in rooms:
+                chn = "#".join((self._key, packet['nsp'], room, ""))
+                self._client.publish(chn, msgpack.packb([self.uid,packet, extras]))
+        else:
+            chn = "#".join((self._key, packet['nsp'], ""))
+            self._client.publish(chn, msgpack.packb([self.uid,packet, extras]))
 
         self._flags = {}
         self._rooms = []

@@ -5,6 +5,8 @@ A Python implementation of [socket.io-emitter](https://github.com/automattic/soc
 
 [socket.io](http://socket.io/) provides a hook point to easily allow you to emit events to browsers from anywhere so `socket.io-python-emitter` communicates with [socket.io](http://socket.io/) servers through redis.
 
+We made some changes, compatible socket.io-redis 0.2.0 and socket.io 0.1.4.
+
 ## How to use
 
 **Install via pip**
