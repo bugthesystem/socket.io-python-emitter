@@ -16,6 +16,7 @@ pip install socket.io-emitter
 ```
 
 ```py
+  import emitter from Emitter
   io=Emitter({'host': 'localhost', 'port':6379})
   io.Emit('broadcast event','Hello from socket.io-python-emitter')
         
