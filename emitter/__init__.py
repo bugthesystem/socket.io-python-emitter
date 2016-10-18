@@ -58,7 +58,6 @@ class Emitter:
         rooms = self._getRooms()
         extras['rooms'] = rooms if len(rooms) > 0 else ''
 
-        self._client.publish(self._key + "#/#", msgpack.packb([packet, extras]))
         if extras['rooms']:
             for room in rooms:
                 chn = "#".join((self._key, packet['nsp'], room, ""))
