@@ -1,11 +1,10 @@
-__author__ = 'ziyasal'
-__version__ = '0.1.4'
+#!/usr/bin/env python
 
 import redis
 import msgpack
 
-
 class Emitter:
+
     EVENT = 2
     BINARY_EVENT = 5
 
@@ -44,7 +43,6 @@ class Emitter:
 
         packet['data'] = args
         packet['type'] = self.BINARY_EVENT if self._hasBin(args) else self.EVENT
-
 
         # set namespace to packet
         if 'nsp' in self._flags:

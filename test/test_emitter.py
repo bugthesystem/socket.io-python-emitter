@@ -1,12 +1,11 @@
-__author__ = 'ziyasal'
+#!/usr/bin/env python
 
 from unittest import TestCase
-import subprocess
 
+import subprocess
 import redis
 
 from emitter import Emitter
-
 
 class TestEmitter(TestCase):
 
