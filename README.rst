@@ -16,7 +16,8 @@ How to use
 
 .. code-block:: python
 
-  import emitter from Emitter
+  from emitter import Emitter
+
   io=Emitter({'host': 'localhost', 'port':6379})
   io.Emit('broadcast event','Hello from socket.io-python-emitter')
 
