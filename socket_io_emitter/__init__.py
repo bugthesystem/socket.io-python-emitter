@@ -12,4 +12,4 @@ __url__          = 'https://github.com/ziyasal/socket.io-python-emitter'
 __download_url__ = 'https://pypi.org/project/socket.io-emitter/'
 __description__  = 'Python implementation of socket.io-emitter.'
 
-from emitter import Emitter
+from .emitter import Emitter
