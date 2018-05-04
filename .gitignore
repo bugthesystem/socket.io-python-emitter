@@ -56,3 +56,6 @@ docs/_build/
 
 # Virtual env
 virtual/
+
+# Pytest
+.pytest_cache/
