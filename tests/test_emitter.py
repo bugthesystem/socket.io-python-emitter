@@ -5,7 +5,7 @@ from unittest import TestCase
 import subprocess
 import redis
 
-from emitter import Emitter
+from socket_io_emitter import Emitter
 
 class TestEmitter(TestCase):
 
@@ -15,15 +15,6 @@ class TestEmitter(TestCase):
 
     def setUp(self):
         self.opts = dict(host='localhost', port=6379)
-
-    def test_In(self):
-        self.fail()
-
-    def test_To(self):
-        self.fail()
-
-    def test_Of(self):
-        self.fail()
 
     def test_Emit(self):
         io = Emitter(self.opts)
