@@ -16,6 +16,21 @@ class TestEmitter(TestCase):
     def setUp(self):
         self.opts = dict(host='localhost', port=6379)
 
+    def test_In(self):
+        io = Emitter(self.opts)
+        io.In('room1')
+        self.assertEqual(len(io._rooms), 1)
+
+    def test_To(self):
+        io = Emitter(self.opts)
+        io.To('room1')
+        self.assertEqual(len(io._rooms), 1)
+
+    def test_Of(self):
+        io = Emitter(self.opts)
+        io.Of('nsp')
+        self.assertEqual(io._flags['nsp'], 'nsp')
+
     def test_Emit(self):
         io = Emitter(self.opts)
         redis_cli = subprocess.Popen('redis-cli monitor', stdout=subprocess.PIPE,stderr=subprocess.PIPE, shell=True)
