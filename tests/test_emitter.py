@@ -18,11 +18,11 @@ class TestEmitter(TestCase):
 
     def test_Emit(self):
         io = Emitter(self.opts)
-        redis_cli = subprocess.Popen("redis-cli monitor", stdout=subprocess.PIPE,stderr=subprocess.PIPE, shell=True)
+        redis_cli = subprocess.Popen('redis-cli monitor', stdout=subprocess.PIPE,stderr=subprocess.PIPE, shell=True)
 
-        output = ""
+        output = ''
         while True:
-            chunk = redis_cli.stdout.read(1)
+            chunk = redis_cli.stdout.read(1).decode('utf-8')
             if chunk == '' and redis_cli.poll() != None:
                 break
             if chunk == '\n':

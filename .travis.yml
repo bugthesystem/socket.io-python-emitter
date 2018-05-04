@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "nightly"
+
+before_script:
+  - sudo redis-server /etc/redis/redis.conf --port 6379
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install -r requirements.testing.txt
+  - pip install -e .
+
+# command to run tests
+script:
+  - py.test -s -v --cov-report xml --cov=socket_io_emitter
+  - codecov
