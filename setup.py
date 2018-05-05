@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='socket.io-emitter',
-    version='0.1.4',
+    version='0.1.5',
     author='Ziya SARIKAYA',
     author_email='sarikayaziya@gmail.com',
     packages=['socket_io_emitter'],
