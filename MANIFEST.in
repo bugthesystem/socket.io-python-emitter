@@ -1,1 +1,6 @@
-include README.md
+include CHANGES
+include COPYING
+include LICENSE
+include NOTICE
+include *.rst
+prune .DS_Store
