@@ -1,6 +1,15 @@
 socket.io-python-emitter
 ========================
 
+.. image:: https://travis-ci.org/ziyasal/socket.io-python-emitter.svg?branch=master
+    :target: https://travis-ci.org/ziyasal/socket.io-python-emitter
+
+.. image:: https://img.shields.io/pypi/v/socket.io-emitter.svg
+    :target: https://pypi.org/project/socket.io-emitter/
+
+.. image:: https://codecov.io/gh/ziyasal/socket.io-python-emitter/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/ziyasal/socket.io-python-emitter
+
 A Python implementation of `socket.io-emitter <https://github.com/automattic/socket.io-emitter>`_.
 
 `socket.io <http://socket.io/>`_ provides a hook point to easily allow you to emit events to browsers from anywhere so `socket.io-python-emitter` communicates with `socket.io <http://socket.io/>`_ servers through redis.
